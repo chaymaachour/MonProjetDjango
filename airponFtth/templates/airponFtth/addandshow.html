@@ -1,0 +1,10 @@
+{% extends 'airponFtth/base.html' %}
+
+{% block content %}
+<h4> ajouter un nouveau abonné</h4>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{from.as.p}}
+    <input type="submit" class="btn btn-success" value="ajouter">
+</form>
+{%endblock content %}

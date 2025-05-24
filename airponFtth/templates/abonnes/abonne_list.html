@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Liste des Abonnés{% endblock %}
+
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<div class="container mt-4">
+    <h2 class="mb-4">Détails des abonnés</h2>
+
+  
+
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="table-dark">
+            <tr>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Téléphone</th>
+                <th>Adresse</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for abonne in abonnes %}
+            <tr>
+                <td>{{ abonne.nom }}</td>
+                <td>{{ abonne.prenom }}</td>
+                <td>{{ abonne.numtel }}</td>
+                <td>{{ abonne.adresse }}</td>
+                <td>{{ abonne.email }}</td>
+                <td>
+                   <a href="{% url 'modifier_abonne' abonne.id %}" class="btn btn-sm btn-primary">Modifier</a>
+
+
+                    <a href="{% url 'supprimer_abonne' sub.id abonne.id %}" class="btn btn-sm btn-danger">Supprimer</a>
+
+                </td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="6" class="text-center">Aucun abonné trouvé.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="mt-4 p-4 rounded-4 shadow-sm" style="background-color: #f3e8ff;">
+        <a href="{% url 'ajouter_abonne' sub.chaine.hub.central.id sub.id %}" class="btn btn-lg w-100 text-white" style="background-color: #8e44ad;">
+            ➕ Ajouter un abonné
+        </a>
+    </div>
+    
+</div>
+{% endblock %}

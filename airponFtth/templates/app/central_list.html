@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h2 class="page-title">Liste des Centrals</h2>
+        <p class="intro-text">Explorez les différents centrals ci-dessous. Cliquez sur un central pour accéder à ses hubs.</p>
+        
+        <div class="central-list">
+            {% for central in centrals %}
+                <div class="central-item">
+                    <a href="{% url 'hub_list' central.id %}" class="central-link">
+                        <div class="central-card">
+                            <h3>{{ central.name }}</h3>
+                            <p>Accédez aux hubs et aux détails du central.</p>
+                        </div>
+                </div>
+            {% empty %}
+                <div class="no-central">Aucun central disponible pour le moment.</div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

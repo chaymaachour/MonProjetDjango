@@ -1,0 +1,14 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="mb-4">Ajouter un nouveau hub pour le central : {{ central.nom }}</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Ajouter</button>
+        <a href="{% url 'hub_list' central.id %}" class="btn btn-secondary">Retour</a>
+    </form>
+</div>
+{% endblock %}

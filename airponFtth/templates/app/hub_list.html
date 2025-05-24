@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="page-title">Hubs pour Central : {{ central.nom }}</h2>
+    <p class="intro-text">Voici la liste des hubs associés au central <strong>{{ central.nom }}</strong>.</p>
+
+    <div class="central-list">
+        {% for hub in hubs %}
+        <div class="central-item">
+            <a href="{% url 'chaine_list' hub.id %}" class="central-link">
+                <div class="central-card">
+                    <h3>{{ hub.nom }}</h3>
+                    <p>Accéder aux chaînes de ce hub</p>
+                </div>
+            </a>
+        </div>
+        {% empty %}
+        <div class="no-central">Aucun hub disponible pour ce central.</div>
+        {% endfor %}
+    </div>
+
+    <div class="back-link">
+        <a href="{% url 'central_list' %}" class="back-btn">← Retour aux Centrals</a>
+    </div>
+</div>
+{% endblock %}

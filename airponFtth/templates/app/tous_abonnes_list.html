@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des abonnés</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .table-container {
+            background-color: rgb(131, 180, 178);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(219, 101, 152, 0.1);
+        }
+        th {
+            text-align: center;
+          
+        }
+        td {
+            vertical-align: middle;
+            text-align: center;
+        }
+      
+    </style>
+</head>
+<body class="bg-light">
+    <div class="container mt-5 table-container">
+        <h2 class="text-center mb-4">📋 Liste de tous les abonnés</h2>
+
+        <table class="table table-striped table-hover align-middle">
+            <thead class="table-primary">
+                <tr>
+                    <th>#</th>
+                    <th>👤 Nom</th>
+                    <th>🧍‍♂️ Prénom</th>
+                    <th>📞 Téléphone</th>
+                    <th>📍 Adresse</th>
+                    <th>✉️ Email</th>
+                    <th>🔗 Chaîne</th>
+                    <th>🧩 Sub</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for abonne in abonnes %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ abonne.nom }}</td>
+                    <td>{{ abonne.prenom }}</td>
+                    <td>{{ abonne.numtel }}</td>
+                    <td>{{ abonne.adresse }}</td>
+                    <td>{{ abonne.email }}</td>
+                    <td class="text-primary">{{ abonne.sub.chaine.nom }}</td>
+                    <td class="fw-bold text-info">{{ abonne.sub.nom }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="8" class="text-center text-muted">Aucun abonné trouvé.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="page-title">Chaînes pour Hub : {{ hub.nom }}</h2>
+    <p class="intro-text">Voici les chaînes associées au hub <strong>{{ hub.nom }}</strong>.</p>
+
+    <div class="central-list">
+        {% for chaine in chaines %}
+        <div class="central-item">
+            <a href="{% url 'sub_list' chaine.id %}" class="central-link">
+                <div class="central-card">
+                    <h3>{{ chaine.nom }}</h3>
+                    <p>Accéder aux subs de cette chaîne</p>
+                </div>
+            </a>
+        </div>
+        {% empty %}
+        <div class="no-central">Aucune chaîne disponible pour ce hub.</div>
+        {% endfor %}
+    </div>
+
+    <div class="back-link">
+        <a href="{% url 'hub_list' hub.central.id %}" class="back-btn">← Retour aux Hubs</a>
+    </div>
+</div>
+{% endblock %}

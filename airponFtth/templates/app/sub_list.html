@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container">
+    <h2 class="page-title">Subs pour Chaîne : {{ chaine.nom }}</h2>
+    <p class="intro-text">Voici les sous-niveaux (subs) associés à la chaîne <strong>{{ chaine.nom }}</strong>.</p>
+
+    <div class="central-list">
+        {% for sub in subs %}
+        <div class="central-item">
+            <a href="{% url 'abonne_list' sub.id %}" class="central-link">
+                <div class="central-card">
+                    <h3>{{ sub.nom }}</h3>
+                    <p>Voir les abonnés de ce sub</p>
+                </div>
+            </a>
+        </div>
+        {% empty %}
+        <div class="no-central">Aucun sub disponible pour cette chaîne.</div>
+        {% endfor %}
+    </div>
+
+    <div class="back-link">
+        <a href="{% url 'chaine_list' chaine.hub.id %}" class="back-btn">← Retour aux Chaînes</a>
+    </div>
+</div>
+{% endblock %}

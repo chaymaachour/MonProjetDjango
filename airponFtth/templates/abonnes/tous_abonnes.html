@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2 style="color: rgb(125, 10, 10); text-align: center;">Liste des Abonnés</h2>
+
+<table border="1" style="width: 100%; border: 2px solid red; border-collapse: collapse; text-align: center;">
+    <thead>
+        <tr>
+            <th style="border: 1px solid red; padding: 10px;">Nom</th>
+            <th style="border: 1px solid red; padding: 10px;">Prénom</th>
+            <th style="border: 1px solid red; padding: 10px;">Numéro de téléphone</th>
+            <th style="border: 1px solid red; padding: 10px;">Email</th>
+            <th style="border: 1px solid red; padding: 10px;">Adresse</th>
+            <th style="border: 1px solid red; padding: 10px;">Sous-niveau (Sub)</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for abonne in abonnes %}
+        <tr>
+            <td style="border: 1px solid red; padding: 10px;">{{ abonne.nom }}</td>
+            <td style="border: 1px solid red; padding: 10px;">{{ abonne.prenom }}</td>
+            <td style="border: 1px solid red; padding: 10px;">{{ abonne.numtel }}</td>
+            <td style="border: 1px solid red; padding: 10px;">{{ abonne.email }}</td>
+            <td style="border: 1px solid red; padding: 10px;">{{ abonne.adresse }}</td>
+            <td style="border: 1px solid red; padding: 10px;">{{ abonne.sub }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

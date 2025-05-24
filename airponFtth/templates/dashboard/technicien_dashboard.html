@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+    {% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <title>Tableau de bord</title>
+  <style>
+    body { font-family: sans-serif; background-color: #ecf0f1; padding: 40px; }
+    .dashboard { max-width: 600px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 15px #ccc; }
+    h1 { color: #2c3e50; }
+    .logout-btn { display: inline-block; margin-top: 20px; padding: 10px 20px; background: #e74c3c; color: white; text-decoration: none; border-radius: 5px; }
+    .logout-btn:hover { background: #aa2112; }
+  </style>
+</head>
+<body>
+  <div class="dashboard">
+    <h1>Bienvenue {{ user.first_name }} !</h1>
+    <p>Vous êtes connecté en tant que <strong>Technicien</strong>.</p>
+    <a href="{% url 'logout' %}" class="logout-btn">Se déconnecter</a>
+    <a href="{% url 'notifier_pannes' %}">🔔 Vérifier les pannes non résolues (plus de 5 jours)</a>
+    <a href="{% url 'mettre_a_jour_pannes' %}">📆 Mettre à jour les pannes (plus de 7 jours)</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>AirPON/FTTH App</title>
+    <style>
+        /* Container général */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f7fa;
+        }
+
+        /* Titre principal */
+        .page-title {
+            font-size: 2.5em;
+            color: #2C3E50;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* Texte introductif */
+        .intro-text {
+            font-size: 1.2em;
+            color: #7F8C8D;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        /* Liste des centrals */
+        .central-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        /* Élément de la liste (carte de central) */
+        .central-item {
+            width: 100%;
+            max-width: 350px;
+        }
+
+        /* Design de la carte pour chaque central */
+        .central-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .central-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Lien pour les centrals */
+        .central-link {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Texte du nom de chaque central */
+        .central-card h3 {
+            font-size: 1.8em;
+            color: #2C3E50;
+            margin-bottom: 10px;
+        }
+
+        /* Texte de description sous le nom du central */
+        .central-card p {
+            font-size: 1.1em;
+            color: #7F8C8D;
+        }
+
+        /* Message lorsque aucun central n'est disponible */
+        .no-central {
+            font-size: 1.2em;
+            color: #E74C3C;
+            text-align: center;
+            padding: 20px;
+            background-color: #F9E5E5;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Retour aux centrals */
+        .back-link {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .back-btn {
+            font-size: 1.2em;
+            color: #3498db;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background-color: #ecf0f1;
+            transition: background-color 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: #dfe6e9;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+       <a href="{% url 'pannes_plus5j' %}" class="btn btn-danger">Pannes +5 jours</a>
+
+        <a href="{% url 'home' %}">accueil</a>
+    </nav>
+    <hr>
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Chaînes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #eef1f7;
+            padding: 40px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #1e3a8a;
+            margin-bottom: 30px;
+        }
+
+        table {
+            width: 90%;
+            margin: auto;
+            border-collapse: collapse;
+            background-color: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.07);
+        }
+
+        thead {
+            background: linear-gradient(to right, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        th, td {
+            padding: 16px;
+            text-align: center;
+            font-size: 16px;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f1f5f9;
+        }
+
+        tbody tr:hover {
+            background-color: #e0e7ff;
+        }
+
+        .btn-link {
+            padding: 8px 16px;
+            background-color: #10b981;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-link:hover {
+            background-color: #059669;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Liste des Chaînes</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nom de la Chaîne</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chaine in chaines %}
+            <tr>
+                <td>{{ chaine.nom }}</td>
+                <td>
+                    <a href="{% url 'abonnes_par_chaine' chaine_id=chaine.id %}" class="btn-link">
+                        Voir les abonnés
+                    </a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="2">Aucune chaîne disponible</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
+{% endblock %}
