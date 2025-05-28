@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'airponFtth',  # Ton application principale
-  
+    'rest_framework',
 ]
 
 # ✅ Middleware

@@ -87,7 +87,14 @@ class Abonne(models.Model):
     def __str__(self):
         return f"{self.nom} {self.prenom}"
 
+class Device(models.Model):
+    name = models.CharField(max_length=100)
+    ip_address = models.GenericIPAddressField()
+    device_type = models.CharField(max_length=50)
 
+    def __str__(self):
+        return self.name
+    
 class Panne(models.Model):
     abonne = models.ForeignKey(Abonne, on_delete=models.CASCADE, related_name='pannes')
     type_panne = models.CharField(max_length=50, choices=TYPE_PANNE_CHOICES)
@@ -95,3 +102,19 @@ class Panne(models.Model):
     etat = models.CharField(max_length=100)
     date_signalement = models.DateTimeField(auto_now_add=True)
     date_resolution = models.DateTimeField(null=True, blank=True)
+
+class PanneResau(models.Model):
+    STATUS_CHOICES = (
+        ('resolu', 'Résolu'),
+        ('en_cours', 'En cours'),
+        ('en_attente', 'En attente'),
+    )
+    device = models.ForeignKey(Device, on_delete=models.CASCADE)
+    description = models.TextField()
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='en_attente')
+    date_reported = models.DateTimeField(auto_now_add=True)
+    date_updated = models.DateTimeField(auto_now=True)
+    date_resolved = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.device.name} - {self.status}"
