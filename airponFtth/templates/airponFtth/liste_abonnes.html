@@ -61,7 +61,6 @@
                     <th>Prénom</th>
                     <th>Téléphone</th>
                     <th>Adresse</th>
-                    <th>Email</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -72,7 +71,7 @@
                     <td>{{ abonne.prenom }}</td>
                     <td>{{ abonne.numtel }}</td>
                     <td>{{ abonne.adresse }}</td>
-                    <td>{{ abonne.email }}</td>
+                  
                     <td>
                         <a href="{% url 'modifier_abonne' abonne.id abonne.sub.id %}" class="btn btn-warning btn-sm">Modifier</a>
 
