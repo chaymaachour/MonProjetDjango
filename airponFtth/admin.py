@@ -3,8 +3,8 @@ from .models import Abonne, Panne, Central, Hub, Chaine, Sub
 
 # Admin personnalisé pour Abonné
 class AbonneAdmin(admin.ModelAdmin):
-    list_display = ['nom', 'prenom', 'numtel', 'adresse', 'email']
-    search_fields = ['nom', 'prenom', 'numtel', 'email']
+    list_display = ['nom', 'prenom', 'numtel', 'adresse']
+    search_fields = ['nom', 'prenom', 'numtel', ]
     list_filter = ['sub']
 
 # Admin personnalisé pour Panne

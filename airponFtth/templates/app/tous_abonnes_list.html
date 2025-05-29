@@ -13,13 +13,11 @@
         }
         th {
             text-align: center;
-          
         }
         td {
             vertical-align: middle;
             text-align: center;
         }
-      
     </style>
 </head>
 <body class="bg-light">
@@ -36,26 +34,33 @@
                     <th>📍 Adresse</th>
                     <th>🔗 Chaîne</th>
                     <th>🧩 Sub</th>
-                     <th> 🏢 Hub </th>
-                    <th>🎨 Une couleur</th>
+                    <th>🏢 Hub</th>
+                    <th>🎨 Couleur</th>
                 </tr>
             </thead>
             <tbody>
-                {% for abonne in abonnes %}
-                <tr>
-                    <td>{{ forloop.counter }}</td>
-                    <td>{{ abonne.nom }}</td>
-                    <td>{{ abonne.prenom }}</td>
-                    <td>{{ abonne.numtel }}</td>
-                    <td>{{ abonne.adresse }}</td>
-               
-                    <td class="text-primary">{{ abonne.sub.chaine.nom }}</td>
-                    <td class="fw-bold text-info">{{ abonne.sub.nom }}</td>
-                </tr>
+                {% regroup abonnes by sub.id as abonnes_par_sub %}
+
+                {% for group in abonnes_par_sub %}
+                    {% for abonne in group.list %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ abonne.nom }}</td>
+                            <td>{{ abonne.prenom }}</td>
+                            <td>{{ abonne.numtel }}</td>
+                            <td>{{ abonne.adresse }}</td>
+                            <td>{{ abonne.sub.chaine.nom }}</td>
+                            <td>{{ abonne.sub.nom }}</td>
+                            <td>{{ abonne.sub.chaine.hub.nom }}</td>
+                            <td>
+                                {% cycle '🔴 Rouge' '🔵 Bleu' '🟢 Vert' '🟡 Jaune' '🟣 Violet' '⚪ Blanc' '🟠 Orange' '⚫ Gris' %}
+                            </td>
+                        </tr>
+                    {% endfor %}
                 {% empty %}
-                <tr>
-                    <td colspan="8" class="text-center text-muted">Aucun abonné trouvé.</td>
-                </tr>
+                    <tr>
+                        <td colspan="9" class="text-center text-muted">Aucun abonné trouvé.</td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
