@@ -167,9 +167,7 @@ def tous_abonnes(request):
     abonnes = Abonne.objects.select_related('sub').all()
     return render(request, 'app/tous_abonnes_list.html', {'abonnes': abonnes})
 
-def tous_abonnes_view(request):
-    abonnes = Abonne.objects.select_related('sub').all()
-    return render(request, 'app/tous_abonnes_list.html', {'abonnes': abonnes})
+
 
 # Gestion des Pannes
 def ajouter_panne(request, abonne_id):
