@@ -12,7 +12,7 @@ class PanneAdmin(admin.ModelAdmin):
     list_display = ['abonne', 'description', 'date_signalement', 'etat']  # Affiche les champs dans la liste
     list_filter = ['etat', 'abonne']  # Filtrage par état de la panne et abonné
     search_fields = ['abonne__nom', 'description']  # Recherche par nom d'abonné et description
-    # Rendre l'état lisible sous forme de texte (en attente, en cours, résolue)
+    # Rendre l'état lisible sous forme de texte (Non traité, en cours, résolue)
     def etat_display(self, obj):
         return obj.get_etat_display()  # Utilise la méthode get_etat_display()
     etat_display.short_description = 'État'  # Titre de la colonne 'État' dans la liste

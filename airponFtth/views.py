@@ -61,7 +61,7 @@ def dashboard_technicien(request):
 def pannes_non_resolues(request):
     seuil = timezone.now() - timedelta(days=5)
     pannes = Panne.objects.filter(
-        etat='en attente',
+        etat='Non traité',
         date_signalement__lte=seuil
     )
     return render(request, 'airponFtth/pannes_non_resolues.html', {'pannes': pannes})

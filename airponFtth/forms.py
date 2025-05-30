@@ -34,12 +34,11 @@ class TechnicienRegisterForm(UserCreationForm):
         return user
 
 
-
 class AbonneForm(forms.ModelForm):
     class Meta:
         model = Abonne
-        fields = ['nom', 'prenom', 'numtel', 'adresse']
-
+        fields = ['nom', 'prenom', 'numtel', 'adresse'] 
+        
 class PanneForm(forms.ModelForm):
     class Meta:
         model = Panne
