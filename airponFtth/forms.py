@@ -1,9 +1,7 @@
 from django import forms
-from airponFtth.models import Abonne, Panne
 from django.contrib.auth.models import User, Group
 from django.contrib.auth.forms import UserCreationForm
-from .models import Technicien
-
+from airponFtth.models import Abonne, Panne, Technicien
 
 class TechnicienRegisterForm(UserCreationForm):
     email = forms.EmailField()
@@ -28,25 +26,21 @@ class TechnicienRegisterForm(UserCreationForm):
                 telephone=self.cleaned_data['telephone'],
                 adresse=self.cleaned_data['adresse']
             )
-            from django.contrib.auth.models import Group
-            group, created = Group.objects.get_or_create(name='Technicien')
+            group, _ = Group.objects.get_or_create(name='Technicien')
             user.groups.add(group)
         return user
-
 
 class AbonneForm(forms.ModelForm):
     class Meta:
         model = Abonne
-        fields = ['nom', 'prenom', 'numtel', 'adresse'] 
-        
+        fields = ['nom', 'prenom', 'numtel', 'adresse']
+
 class PanneForm(forms.ModelForm):
     class Meta:
         model = Panne
-        fields = ['abonne', 'type_panne', 'description','etat']
+        fields = ['abonne', 'type_panne', 'description', 'etat']
 
-class PannePublicForm(forms.ModelForm):  # <-- Cette classe manquait
+class PannePublicForm(forms.ModelForm):
     class Meta:
         model = Panne
         fields = ['description']
-
-

@@ -69,7 +69,7 @@ class Sub(models.Model):
         return self.nom
 
 class Abonne(models.Model):
-    sub = models.ForeignKey(Sub, on_delete=models.CASCADE, related_name='abonnes')
+    sub = models.ForeignKey(Sub, related_name='abonnes', on_delete=models.CASCADE)
     nom = models.CharField(max_length=100)
     prenom = models.CharField(max_length=100)
     numtel = models.CharField(max_length=15)

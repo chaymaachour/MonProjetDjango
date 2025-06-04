@@ -65,15 +65,24 @@ def pannes_non_resolues(request):
         date_signalement__lte=seuil
     )
     return render(request, 'airponFtth/pannes_non_resolues.html', {'pannes': pannes})
-
 def notifier_pannes(request):
-    # Seuil : pannes datant de plus de 5 jours
     seuil_date = timezone.now() - timedelta(days=5)
+    pannes = Panne.objects.filter(etat='Non traité', date_signalement__lte=seuil_date)
     
-    # Récupère les pannes non résolues signalées il y a plus de 5 jours
-    pannes = Panne.objects.filter(date_signalement__lte=seuil_date).exclude(etat='résolu')
-    
-    return render(request, 'notifier_pannes.html', {'pannes': pannes})
+    if pannes.exists():
+        message = "Les pannes suivantes n'ont pas été traitées depuis plus de 5 jours:\n"
+        for panne in pannes:
+            message += f"- {panne.abonne.nom} {panne.abonne.prenom}: {panne.type_panne}\n"
+        
+        send_mail(
+            subject="Alerte : Pannes non résolues",
+            message=message,
+            from_email="noreply@airponftth.com",
+            recipient_list=["admin@airponftth.com"],  # à adapter
+        )
+
+    return render(request, 'airponFtth/alerte_envoyee.html', {'pannes': pannes})
+
     
 def mettre_a_jour_panne(request, panne_id):
     panne = get_object_or_404(Panne, id=panne_id)

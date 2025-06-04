@@ -3,7 +3,8 @@ from . import views
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [
-    path('', views.home, name='home'),  # Accueil du site
+    path('', views.home, name='home'),
+    path('accueil/', views.accueil, name='accueil'),
 
     # Navigation hiérarchique
     path('central/', views.central_list, name='central_list'),
@@ -12,20 +13,18 @@ urlpatterns = [
     path('chaine/<int:chaine_id>/subs/', views.sub_list, name='sub_list'),
     path('sub/<int:sub_id>/abonnes/', views.abonne_list, name='abonne_list'),
 
-    # CRUD Abonnés
+    # CRUD abonnés
     path('sub/<int:central_id>/<int:sub_id>/abonnes/ajouter/', views.ajouter_abonne, name='ajouter_abonne'),
-  path('abonnes/<int:abonne_id>/modifier/', views.modifier_abonne, name='modifier_abonne'),
-
+    path('abonnes/<int:abonne_id>/modifier/', views.modifier_abonne, name='modifier_abonne'),
     path('sub/<int:sub_id>/abonnes/<int:abonne_id>/supprimer/', views.supprimer_abonne, name='supprimer_abonne'),
 
     # Tous les abonnés
     path('abonnes/', views.tous_abonnes, name='tous_abonnes'),
-   
+
     # Gestion des pannes
     path('abonnes/<int:abonne_id>/pannes/ajouter/', views.ajouter_panne, name='ajouter_panne'),
     path('pannes/', views.liste_pannes, name='liste_pannes'),
-   path('pannes/<int:panne_id>/mettre_a_jour/', views.mettre_a_jour_panne, name='mettre_a_jour_panne'),
-
+    path('pannes/<int:panne_id>/mettre_a_jour/', views.mettre_a_jour_panne, name='mettre_a_jour_panne'),
     path('pannes/plus5j/', views.pannes_non_resolues, name='pannes_plus5j'),
 
     # Authentification
@@ -34,15 +33,9 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
 
     # Dashboard
-   path('register/technicien/', views.technicien_register, name='technicien_register'),
     path('dashboard/technicien/', views.dashboard_technicien, name='dashboard_technicien'),
 
- path('abonnes/', views.abonne_list, name='liste_abonnes_global'),
-
-    path('accueil/', views.accueil, name='accueil'),
+    # Chaines et abonnés par chaîne
     path('chaines/', views.liste_chaines, name='liste_chaines'),
     path('abonnes/chaine/<int:chaine_id>/', views.abonnés_par_chaine, name='abonnes_par_chaine'),
-   
 ]
-
-    
