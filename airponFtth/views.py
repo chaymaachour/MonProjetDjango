@@ -66,11 +66,11 @@ def pannes_non_resolues(request):
     )
     return render(request, 'airponFtth/pannes_non_resolues.html', {'pannes': pannes})
 def notifier_pannes(request):
-    seuil_date = timezone.now() - timedelta(days=5)
+    seuil_date = timezone.now() - timedelta(days=2)
     pannes = Panne.objects.filter(etat='Non traité', date_signalement__lte=seuil_date)
     
     if pannes.exists():
-        message = "Les pannes suivantes n'ont pas été traitées depuis plus de 5 jours:\n"
+        message = "Les pannes suivantes n'ont pas été traitées depuis plus de 2 jours:\n"
         for panne in pannes:
             message += f"- {panne.abonne.nom} {panne.abonne.prenom}: {panne.type_panne}\n"
         
@@ -125,20 +125,26 @@ def ajouter_abonne(request, central_id, sub_id):
     if request.method == 'POST':
         form = AbonneForm(request.POST)
         if form.is_valid():
+            # Vérification du nombre d'abonnés
             if sub.abonnes.count() >= 8:
-                messages.error(request, "Ce sous-niveau contient déjà 8 abonnés.")
-                return redirect('abonne_list', sub_id=sub_id)
+                messages.error(request, "❌ Ce sous-niveau contient déjà 8 abonnés.")
+                return redirect('abonne_list', sub_id=sub.id)
 
             abonne = form.save(commit=False)
             abonne.sub = sub
-            abonne.save()
-            return redirect('abonne_list', sub_id=sub.id)
+            try:
+                abonne.save()
+                messages.success(request, "✅ Abonné ajouté avec succès.")
+                return redirect('abonne_list', sub_id=sub.id)
+            except Exception as e:
+                messages.error(request, f"Erreur lors de l'enregistrement : {e}")
     else:
         form = AbonneForm()
 
-    return render(request, 'app/ajouter_abonne.html', {'form': form, 'sub': sub})
-
-
+    return render(request, 'app/ajouter_abonne.html', {
+        'form': form,
+        'sub': sub
+    })
 
 def modifier_abonne(request, abonne_id):
     abonne = get_object_or_404(Abonne, id=abonne_id)

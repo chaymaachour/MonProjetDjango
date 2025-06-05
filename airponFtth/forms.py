@@ -35,6 +35,16 @@ class AbonneForm(forms.ModelForm):
         model = Abonne
         fields = ['nom', 'prenom', 'numtel', 'adresse']
 
+    def __init__(self, *args, **kwargs):
+        self.sub = kwargs.pop('sub', None)
+        super().__init__(*args, **kwargs)
+
+    def clean(self):
+        cleaned_data = super().clean()
+        if self.sub and self.sub.abonnes.count() >= 8:
+            raise forms.ValidationError("Ce sous-niveau contient déjà 8 abonnés.")
+        return cleaned_data
+    
 class PanneForm(forms.ModelForm):
     class Meta:
         model = Panne
@@ -44,3 +54,6 @@ class PannePublicForm(forms.ModelForm):
     class Meta:
         model = Panne
         fields = ['description']
+
+from django import forms
+

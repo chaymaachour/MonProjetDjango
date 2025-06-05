@@ -75,10 +75,7 @@ class Abonne(models.Model):
     numtel = models.CharField(max_length=15)
     adresse = models.CharField(max_length=255)
   
-    def clean(self):
-        if self.sub and not self.pk and self.sub.abonnes.count() >= 8:
-            raise ValidationError("Ce Sub contient déjà 8 abonnés.")
-
+  
     def save(self, *args, **kwargs):
         self.full_clean()
         super().save(*args, **kwargs)

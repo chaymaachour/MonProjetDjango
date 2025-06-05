@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>📌 Pannes Non traité depuis plus de 5 jours</h2>
+<h2>📌 Pannes Non traité depuis plus de 2 jours</h2>
    <style>
         body {
             font-family: Arial, sans-serif;
@@ -85,7 +85,7 @@
         </tr>
         {% empty %}
         <tr>
-            <td colspan="4">✅ Aucune panne non résolue depuis 5 jours.</td>
+            <td colspan="4">✅ Aucune panne non résolue depuis 2 jours.</td>
         </tr>
         {% endfor %}
     </tbody>
