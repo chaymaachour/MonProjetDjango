@@ -10,7 +10,7 @@ from airponFtth.models import Central, Hub, Chaine, Sub, Abonne, Panne
 
 # Import des formulaires
 from .forms import AbonneForm, PanneForm, TechnicienRegisterForm, PannePublicForm
-
+from django.contrib.auth.models import User
 # Page d'accueil
 def accueil(request):
     # Affiche la liste de tous les centrals pour la page d’accueil
@@ -22,19 +22,18 @@ def home(request):
     return render(request, 'app/home.html')
 
 # Inscription technicien
+
 def technicien_register(request):
     if request.method == 'POST':
-        username = request.POST.get('username', '').strip()
         first_name = request.POST.get('first_name', '').strip()
         last_name = request.POST.get('last_name', '').strip()
         email = request.POST.get('email', '').strip()
         password = request.POST.get('password', '').strip()
         password_confirmation = request.POST.get('password_confirmation', '').strip()
-        phone = request.POST.get('phone', '').strip()
         address = request.POST.get('address', '').strip()
 
-        # Validation simple
-        if not all([username, first_name, last_name, email, password, password_confirmation, phone, address]):
+        # Validation
+        if not all([first_name, last_name, email, password, password_confirmation, address]):
             messages.error(request, "Tous les champs sont obligatoires.")
             return render(request, 'registration/technicien_register.html')
 
@@ -46,13 +45,27 @@ def technicien_register(request):
             messages.error(request, "Le mot de passe doit contenir au moins 8 caractères.")
             return render(request, 'registration/technicien_register.html')
 
-        # Ici tu peux ajouter la création de l'utilisateur, etc.
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Un utilisateur avec cet email existe déjà.")
+            return render(request, 'registration/technicien_register.html')
 
-        messages.success(request, "Compte créé avec succès !")
-        return redirect('login')  # ou une autre page
+        # Création utilisateur
+        user = User.objects.create_user(
+            username=email,  # Utiliser email comme username unique
+            email=email,
+            password=password,
+            first_name=first_name,
+            last_name=last_name
+        )
+
+        # Ici tu peux stocker l'adresse dans un profil technicien si tu as ce modèle
+        # Exemple :
+        # Technicien.objects.create(user=user, address=address)
+
+        messages.success(request, "Compte technicien créé avec succès ! Vous pouvez maintenant vous connecter.")
+        return redirect('login')
 
     return render(request, 'registration/technicien_register.html')
-
 @login_required
 def dashboard_technicien(request):
     return render(request, 'dashboard/technicien_dashboard.html')

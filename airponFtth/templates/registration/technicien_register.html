@@ -1,163 +1,137 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Créer un compte Technicien</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Créer un compte Technicien</title>
 
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-<style>
-  .bg-custom {
-    background: url('https://img.freepik.com/photos-premium/conception-arriere-plan-abstraite-hd-couleur-jaune-au-clair-lune_851755-59034.jpg?semt=ais_hybrid&w=740') repeat, linear-gradient(to bottom, #d4da91, #535c3e);
-    background-size: cover;
-    background-blend-mode: overlay;
-  }
-  .waves {
-    position: absolute;
-    top: 0; left: 0;
-    width: 100%; height: 100%;
-    background: url('https://www.transparenttextures.com/patterns/waves.png') repeat-x;
-    background-size: cover;
-    opacity: 0.5;
-    z-index: 0;
-  }
-  .form-container {
-    position: relative;
-    z-index: 10;
-    background-color: rgba(178, 197, 152, 0.9);
-    border-radius: 16px;
-    padding: 1.5rem 1.8rem;
-    box-shadow: 0 2px 6px rgba(231, 142, 8, 0.1);
-    width: 460px;
-    font-size: 14px;
-  }
-  h2 {
-    font-weight: 700;
-    text-align: center;
-    color: #4b5720;
-    margin-bottom: 1rem;
-    font-size: 1.8rem;
-  }
-  label {
-    display: block;
-    margin-bottom: 0.18rem;
-    color: #4b5720;
-    font-weight: 600;
-  }
-  .form-input {
-    border-radius: 8px;
-    border: 1px solid #616c3205;
-    padding: 0.7rem 0.7rem;
-    width: 100%;
-    margin-bottom: 0.6rem;
-    font-size: 0.9rem;
-  }
-  .submit-button {
-    background-color: #608c58;
-    color: rgb(230, 240, 231);
-    padding: 0.9rem;
-    width: 80%;
-    border-radius: 12px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-weight: 700;
-    font-size: 1rem;
-  }
-  .submit-button:hover {
-    background-color: #0c0909;
-  }
-  .login-link {
-    color: #0b0404;
-    font-weight: 600;
-  }
-  .login-link:hover {
-    text-decoration: underline;
-  }
-  .relative {
-    position: relative;
-  }
-  .fa-eye {
-    position: absolute;
-    right: 0.6rem;
-    top: 100%;
-    transform: translateY(-50%);
-    color: #6b6f4c;
-    cursor: pointer;
-  }
-  .messages div {
-    margin-bottom: 0.5rem;
-    padding: 0.5rem;
-    border-radius: 10px;
-    font-size: 0.85rem;
-    background-color: #f0f9f0;
-    color: #2f5a2f;
-  }
-</style>
+  <style>
+    /* Ton style personnalisé ici (tel que fourni) */
+    .bg-custom {
+      background: url('https://img.freepik.com/photos-premium/conception-arriere-plan-abstraite-hd-couleur-jaune-au-clair-lune_851755-59034.jpg?semt=ais_hybrid&w=740') repeat, linear-gradient(to bottom, #d4da91, #535c3e);
+      background-size: cover;
+      background-blend-mode: overlay;
+    }
+    .waves {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: url('https://www.transparenttextures.com/patterns/waves.png') repeat-x;
+      background-size: cover;
+      opacity: 0.5;
+      z-index: 0;
+    }
+    .form-container {
+      position: relative;
+      z-index: 10;
+      background-color: rgba(178, 197, 152, 0.9);
+      border-radius: 16px;
+      padding: 1.5rem 1.8rem;
+      box-shadow: 0 2px 6px rgba(231, 142, 8, 0.1);
+      width: 460px;
+      font-size: 14px;
+    }
+    h2 {
+      font-weight: 700;
+      text-align: center;
+      color: #4b5720;
+      margin-bottom: 1rem;
+      font-size: 1.8rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.18rem;
+      color: #4b5720;
+      font-weight: 600;
+    }
+    .form-input {
+      border-radius: 8px;
+      border: 1px solid #616c3205;
+      padding: 0.7rem 0.7rem;
+      width: 100%;
+      margin-bottom: 0.6rem;
+      font-size: 0.9rem;
+    }
+    .submit-button {
+      background-color: #608c58;
+      color: rgb(230, 240, 231);
+      padding: 0.9rem;
+      width: 80%;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      font-weight: 700;
+      font-size: 1rem;
+    }
+    .submit-button:hover {
+      background-color: #0c0909;
+    }
+    .login-link {
+      color: #0b0404;
+      font-weight: 600;
+    }
+    .login-link:hover {
+      text-decoration: underline;
+    }
+    .messages div {
+      margin-bottom: 0.5rem;
+      padding: 0.5rem;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      background-color: #f0f9f0;
+      color: #2f5a2f;
+    }
+  </style>
 </head>
 <body class="bg-custom min-h-screen flex items-center justify-center relative">
 
-<div class="waves"></div>
+  <div class="waves"></div>
 
-<div class="form-container">
-  <h2>Créer un compte Technicien</h2>
+  <div class="form-container">
+    <h2>Créer un compte Technicien</h2>
 
-  <form method="post" class="space-y-1">
-    {% csrf_token %}
+    <form method="post" class="space-y-1">
+      {% csrf_token %}
 
-    {% if messages %}
-      <div class="messages">
-        {% for message in messages %}
-          <div class="{{ message.tags }}">{{ message }}</div>
-        {% endfor %}
-      </div>
-    {% endif %}
+      {% if messages %}
+        <div class="messages">
+          {% for message in messages %}
+            <div class="{{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
 
-  
+      <label for="first_name">Prénom :</label>
+      <input type="text" id="first_name" name="first_name" value="{{ request.POST.first_name|default:'' }}" required class="form-input" placeholder="Prénom" />
 
-    <label for="first_name">Prénom :</label>
-    <input type="text" id="first_name" name="first_name" required class="form-input" placeholder="Prénom" />
+      <label for="last_name">Nom :</label>
+      <input type="text" id="last_name" name="last_name" value="{{ request.POST.last_name|default:'' }}" required class="form-input" placeholder="Nom" />
 
-    <label for="last_name">Nom :</label>
-    <input type="text" id="last_name" name="last_name" required class="form-input" placeholder="Nom" />
+      <label for="email">Email :</label>
+      <input type="email" id="email" name="email" value="{{ request.POST.email|default:'' }}" required class="form-input" placeholder="Email" />
 
-    <label for="email">Email :</label>
-    <input type="email" id="email" name="email" required class="form-input" placeholder="Email" />
-
-    <label for="password">Mot de passe :</label>
-    <div class="relative">
+      <label for="password">Mot de passe :</label>
       <input type="password" id="password" name="password" required class="form-input" placeholder="Mot de passe" />
-     
-    </div>
 
-    <label for="password_confirmation">Confirmation du mot de passe :</label>
-    <input type="password" id="password_confirmation" name="password_confirmation" required class="form-input" placeholder="Confirmer le mot de passe" />
+      <label for="password_confirmation">Confirmation du mot de passe :</label>
+      <input type="password" id="password_confirmation" name="password_confirmation" required class="form-input" placeholder="Confirmer le mot de passe" />
 
-    <label for="phone">Téléphone :</label>
-    <input type="tel" id="phone" name="phone" required class="form-input" placeholder="Téléphone" />
+      <label for="address">Adresse :</label>
+      <input type="text" id="address" name="address" value="{{ request.POST.address|default:'' }}" required class="form-input" placeholder="Adresse" />
 
-    <label for="address">Adresse :</label>
-    <input type="text" id="address" name="address" required class="form-input" placeholder="Adresse" />
+      <div class="flex justify-center">
+        <button type="submit" class="submit-button">S’inscrire</button>
+      </div>
+    </form>
 
-    <button type="submit" class="submit-button">S’inscrire</button>
-  </form>
-
-  <p class="text-center mt-4 text-sm text-gray-700">
-    Déjà un compte ? <a href="{% url 'login' %}" class="login-link">Se connecter</a>
-  </p>
-</div>
-
-<script>
-  const toggle = document.getElementById('togglePassword');
-  const password = document.getElementById('password');
-  toggle.addEventListener('click', function () {
-    const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-    password.setAttribute('type', type);
-    this.classList.toggle('fa-eye-slash');
-  });
-</script>
+    <p class="text-center mt-4 text-sm text-gray-700">
+      Déjà un compte ? <a href="{% url 'login' %}" class="login-link">Se connecter</a>
+    </p>
+  </div>
 
 </body>
 </html>
