@@ -55,5 +55,5 @@ class PannePublicForm(forms.ModelForm):
         model = Panne
         fields = ['description']
 
-from django import forms
+
 
