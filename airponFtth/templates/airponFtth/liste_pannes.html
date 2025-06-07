@@ -42,7 +42,7 @@
                     <td>{{ panne.description }}</td>
                     <td>{{ panne.date_signalement }}</td>
                     <td>
-                        {% if panne.etat == "résolue" %}
+                        {% if panne.etat == "résolu" %}
                             <span class="badge bg-success">Résolu</span>
                         {% elif panne.etat == "en cours" %}
                             <span class="badge bg-warning text-dark">En cours</span>
