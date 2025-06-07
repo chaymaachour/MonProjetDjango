@@ -71,40 +71,15 @@ def dashboard_technicien(request):
     return render(request, 'dashboard/technicien_dashboard.html')
 
 
-def pannes_non_resolues(request):
+def pannes_Non_traité(request):
     seuil = timezone.now() - timedelta(days=5)
     pannes = Panne.objects.filter(
         etat='Non traité',
         date_signalement__lte=seuil
     )
     return render(request, 'airponFtth/pannes_Non_traité.html', {'pannes': pannes})
-def notifier_pannes(request):
-    seuil_date = timezone.now() - timedelta(days=2)
-    pannes = Panne.objects.filter(etat='Non traité', date_signalement__lte=seuil_date)
-    
-    if pannes.exists():
-        message = "Les pannes suivantes n'ont pas été traitées depuis plus de 2 jours:\n"
-        for panne in pannes:
-            message += f"- {panne.abonne.nom} {panne.abonne.prenom}: {panne.type_panne}\n"
-        
-        send_mail(
-            subject="Alerte : Pannes Non traité",
-            message=message,
-            from_email="noreply@airponftth.com",
-            recipient_list=["admin@airponftth.com"],  # à adapter
-        )
 
-    return render(request, 'airponFtth/alerte_envoyee.html', {'pannes': pannes})
 
-    
-def mettre_a_jour_panne(request, panne_id):
-    panne = get_object_or_404(Panne, id=panne_id)
-    if request.method == 'POST':
-        panne.etat = 'résolue'
-        panne.date_resolution = timezone.now()
-        panne.save()
-        return redirect('liste_pannes')
-    return render(request, 'app/mettre_a_jour_panne.html', {'panne': panne})
 
 # Navigation Hiérarchique Central → Hub → Chaine → Sub → Abonné
 def central_list(request):

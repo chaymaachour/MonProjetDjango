@@ -24,8 +24,7 @@ urlpatterns = [
     # Gestion des pannes
     path('abonnes/<int:abonne_id>/pannes/ajouter/', views.ajouter_panne, name='ajouter_panne'),
     path('pannes/', views.liste_pannes, name='liste_pannes'),
-    path('pannes/<int:panne_id>/mettre_a_jour/', views.mettre_a_jour_panne, name='mettre_a_jour_panne'),
-    path('pannes/plus2j/', views.pannes_non_resolues, name='pannes_plus2j'),
+    path('pannes/plus2j/', views.pannes_Non_traité, name='pannes_plus2j'),
 
     # Authentification
     path('signup/', views.technicien_register, name='signup'),
