@@ -77,7 +77,7 @@ def pannes_non_resolues(request):
         etat='Non traité',
         date_signalement__lte=seuil
     )
-    return render(request, 'airponFtth/pannes_non_resolues.html', {'pannes': pannes})
+    return render(request, 'airponFtth/pannes_Non_traité.html', {'pannes': pannes})
 def notifier_pannes(request):
     seuil_date = timezone.now() - timedelta(days=2)
     pannes = Panne.objects.filter(etat='Non traité', date_signalement__lte=seuil_date)
@@ -88,7 +88,7 @@ def notifier_pannes(request):
             message += f"- {panne.abonne.nom} {panne.abonne.prenom}: {panne.type_panne}\n"
         
         send_mail(
-            subject="Alerte : Pannes non résolues",
+            subject="Alerte : Pannes Non traité",
             message=message,
             from_email="noreply@airponftth.com",
             recipient_list=["admin@airponftth.com"],  # à adapter
