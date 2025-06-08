@@ -72,7 +72,7 @@ def dashboard_technicien(request):
 
 
 def pannes_Non_traité(request):
-    seuil = timezone.now() - timedelta(days=5)
+    seuil = timezone.now() - timedelta(days=2)
     pannes = Panne.objects.filter(
         etat='Non traité',
         date_signalement__lte=seuil
