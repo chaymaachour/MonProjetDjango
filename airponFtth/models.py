@@ -24,12 +24,18 @@ TYPE_PANNE_CHOICES = [
     ('reseau', 'Panne générale réseau'),
 ]
 
+ETAT_CHOICES = [
+    ('non_traite', 'Non traité'),
+    ('en_cours', 'En cours'),
+    ('resolu', 'Résolu'),
+]
+
 class Central(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
-
+# Modèle représentant un Hub rattaché à un Central
 class Hub(models.Model):
     central = models.ForeignKey(Central, on_delete=models.CASCADE, related_name='hubs')
     nom = models.CharField(max_length=100)
@@ -75,7 +81,7 @@ class Abonne(models.Model):
     numtel = models.CharField(max_length=15)
     adresse = models.CharField(max_length=255)
   
-  
+  #Assure la validation des données du modèle avant l’enregistrement en base.
     def save(self, *args, **kwargs):
         self.full_clean()
         super().save(*args, **kwargs)
@@ -88,6 +94,6 @@ class Panne(models.Model):
     abonne = models.ForeignKey(Abonne, on_delete=models.CASCADE, related_name='pannes')
     type_panne = models.CharField(max_length=50, choices=TYPE_PANNE_CHOICES)
     description = models.TextField()
-    etat = models.CharField(max_length=100)
+    etat = models.CharField(max_length=20, choices=ETAT_CHOICES, default='non_traite')
     date_signalement = models.DateTimeField(auto_now_add=True)
     date_resolution = models.DateTimeField(null=True, blank=True)

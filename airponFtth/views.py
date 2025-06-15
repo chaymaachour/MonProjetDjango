@@ -58,10 +58,7 @@ def technicien_register(request):
             last_name=last_name
         )
 
-        # Ici tu peux stocker l'adresse dans un profil technicien si tu as ce modèle
-        # Exemple :
-        # Technicien.objects.create(user=user, address=address)
-
+    
         messages.success(request, "Compte technicien créé avec succès ! Vous pouvez maintenant vous connecter.")
         return redirect('login')
 
@@ -70,7 +67,7 @@ def technicien_register(request):
 def dashboard_technicien(request):
     return render(request, 'dashboard/technicien_dashboard.html')
 
-
+#Affiche les pannes non traitées depuis plus de 2 jours 
 def pannes_Non_traité(request):
     seuil = timezone.now() - timedelta(days=2)
     pannes = Panne.objects.filter(
@@ -146,6 +143,8 @@ def modifier_abonne(request, abonne_id):
         form = AbonneForm(instance=abonne)
 
     return render(request, 'abonnes/modifier_abonne.html', {'form': form, 'abonne': abonne})
+
+## Suppression de l'abonné après confirmation, puis redirection vers la liste.
 
 def supprimer_abonne(request, sub_id, abonne_id):
     # Récupérer l'objet Sub
